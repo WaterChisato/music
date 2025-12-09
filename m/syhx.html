@@ -3,33 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>深渊幻象 - 水喝千束音乐专区</title>
-    <link rel="stylesheet" href="../style.css">
+    <title>深渊幻象</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+            position: relative; /* 为了让返回按钮绝对定位 */
+        }
+        /* 左上角返回按钮 */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .player {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 320px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+        .audio { display: none; }
+        .controls button {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 14px 36px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .controls button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        .controls button.pause {
+            background: rgba(255, 107, 107, 0.4);
+        }
+    </style>
 </head>
 <body>
-    <a href="https://music.waterchisato.top" class="back-btn">返回主页</a>
-    <a href="../index.html" class="back-btn" style="left:120px;">歌单</a>
+    <!-- 左上角返回按钮 -->
+    <a href="https://music.waterchisato.top" class="back-btn">← 返回</a>
 
     <div class="player">
         <div class="title">深渊幻象</div>
-        <audio id="audio" src="http://logo.kf.waterchisato.top/zy/ats2.mp3" preload="auto"></audio>
-        <button id="btn" class="play-btn">播放</button>
+        
+        <audio id="audioPlayer" class="audio" src="http://logo.kf.waterchisato.top/zy/ats2.mp3" preload="auto"></audio>
+        
+        <div class="controls">
+            <button id="playPauseBtn">播放</button>
+        </div>
     </div>
 
     <script>
-        const audio = document.getElementById('audio');
-        const btn = document.getElementById('btn');
-        btn.onclick = () => {
+        const audio = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+
+        playPauseBtn.addEventListener('click', () => {
             if (audio.paused) {
                 audio.play();
-                btn.textContent = '暂停';
-                btn.classList.add('pause');
+                playPauseBtn.textContent = '暂停';
+                playPauseBtn.classList.add('pause');
             } else {
                 audio.pause();
-                btn.textContent = '播放';
-                btn.classList.remove('pause');
+                playPauseBtn.textContent = '播放';
+                playPauseBtn.classList.remove('pause');
             }
-        };
+        });
+
+        audio.addEventListener('error', () => {
+            playPauseBtn.textContent = '加载失败';
+            playPauseBtn.disabled = true;
+        });
     </script>
 </body>
 </html>
