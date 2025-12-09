@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水喝千束 音乐专区</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="https://music.waterchisato.top" class="back-btn">返回主页</a>
+    <h1 class="title">水喝千束 音乐专区</h1>
+
+    <div class="song-list" id="list">
+        <div class="loading">加载歌单中…</div>
+    </div>
+
+    <script>
+        fetch('menu.json')
+            .then(r => {
+                if (!r.ok) throw new Error('加载失败');
+                return r.json();
+            })
+            .then(songs => {
+                const list = document.getElementById('list');
+                list.innerHTML = '';  // 清空加载提示
+                songs.forEach(song => {
+                    const a = document.createElement('a');
+                    a.href = song.link;  // 直接用你的 m/ 路径
+                    a.target = '_blank';  // 新标签打开，避免跳出
+                    a.className = 'song-item';
+                    a.textContent = song.title;
+                    list.appendChild(a);
+                });
+            })
+            .catch(err => {
+                document.getElementById('list').innerHTML = '<div class="error">加载失败，请刷新页面～</div>';
+            });
+    </script>
+</body>
+</html>
