@@ -1,51 +1,37 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>水喝千束 音乐专区</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .loading, .error { text-align:center; margin-top:100px; font-size:18px; }
-        .error { color:#ffb4b4; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>水喝千束 音乐专区</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <a href="https://music.waterchisato.top" class="back-btn">返回主页</a>
-    
-    <div class="container">
-        <h1 class="title">水喝千束 音乐专区</h1>
-        
-        <div class="loading" id="loading">加载中…</div>
-        <div class="error" id="error" style="display:none;"></div>
-        
-        <div class="song-list" id="songList"></div>
-    </div>
+  <a href="https://music.waterchisato.top" class="back-btn">返回主页</a>
+  <h1 class="title">水喝千束 音乐专区</h1>
 
-    <script>
-        const list = document.getElementById('songList');
-        const loading = document.getElementById('loading');
-        const error = document.getElementById('error');
+  <div class="song-list" id="list">
+    <div style="text-align:center;padding:50px;color:#ff9999;">加载中…</div>
+  </div>
 
-        fetch('menu.json')
-            .then(r => { if (!r.ok) throw new Error('找不到 menu.json'); return r.json(); })
-            .then(songs => {
-                loading.style.display = 'none';
-                if (!Array.isArray(songs) || songs.length === 0) throw new Error('歌单为空');
-
-                songs.forEach(song => {
-                    const a = document.createElement('a');
-                    a.className = 'song-item';
-                    a.href = `player.html?title=${encodeURIComponent(song.title)}&url=${encodeURIComponent(song.url)}`;
-                    a.innerHTML = `<div class="song-title">${song.title}</div>`;
-                    list.appendChild(a);
-                });
-            })
-            .catch(err => {
-                loading.style.display = 'none';
-                error.style.display = 'block';
-                error.textContent = '加载失败：' + err.message;
-            });
-    </script>
+  <script>
+    fetch('menu.json')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(songs => {
+        const list = document.getElementById('list');
+        list.innerHTML = '';
+        songs.forEach(s => {
+          const a = document.createElement('a');
+          a.href = s.link;
+          a.target = "_blank";        // 新标签页打开（推荐）
+          a.className = 'song-item';
+          a.textContent = s.title;
+          list.appendChild(a);
+        });
+      })
+      .catch(() => {
+        document.getElementById('list').innerHTML = '<div style="color:#ff6b6b;padding:50px;">加载失败，请刷新</div>';
+      });
+  </script>
 </body>
 </html>
