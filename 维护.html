@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水喝千束音乐专区 - 正在维护</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap');
+        
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            font-family: 'Noto Sans SC', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            color: #fff;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            margin: 0;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            animation: bounce 2s infinite;
+        }
+
+        p {
+            font-size: 1.8rem;
+            margin: 20px 0;
+            opacity: 0.9;
+        }
+
+        .tips {
+            font-size: 1.2rem;
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+
+        /* 千束色调的装饰小圆点 */
+        .deco {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* 随机飘落的小装饰 */
+        .deco:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-duration: 12s; }
+        .deco:nth-child(2) { width: 50px; height: 50px; left: 30%; animation-duration: 18s; animation-delay: 2s; }
+        .deco:nth-child(3) { width: 100px; height: 100px; left: 50%; animation-duration: 15s; animation-delay: 5s; }
+        .deco:nth-child(4) { width: 60px; height: 60px; left: 70%; animation-duration: 20s; animation-delay: 8s; }
+        .deco:nth-child(5) { width: 90px; height: 90px; left: 90%; animation-duration: 14s; animation-delay: 3s; }
+    </style>
+</head>
+<body>
+    <div class="deco"></div>
+    <div class="deco"></div>
+    <div class="deco"></div>
+    <div class="deco"></div>
+    <div class="deco"></div>
+
+    <div class="container">
+        <h1>水喝千束音乐专区</h1>
+        
+        <p>正在维护中～</p>
+        <div class="tips">
+            千束去吃夏威夷汉堡啦！<br>
+            维护完就会带着满满的元气回来哦♡<br>
+            请耐心等待一下下～
+        </div>
+    </div>
+</body>
+</html>
