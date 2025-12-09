@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深渊幻象 - 水喝千束音乐专区</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <a href="https://music.waterchisato.top" class="back-btn">返回主页</a>
+    <a href="../index.html" class="back-btn" style="left:120px;">歌单</a>
+
+    <div class="player">
+        <div class="title">深渊幻象</div>
+        <audio id="audio" src="http://logo.kf.waterchisato.top/zy/ats2.mp3" preload="auto"></audio>
+        <button id="btn" class="play-btn">播放</button>
+    </div>
+
+    <script>
+        const audio = document.getElementById('audio');
+        const btn = document.getElementById('btn');
+        btn.onclick = () => {
+            if (audio.paused) {
+                audio.play();
+                btn.textContent = '暂停';
+                btn.classList.add('pause');
+            } else {
+                audio.pause();
+                btn.textContent = '播放';
+                btn.classList.remove('pause');
+            }
+        };
+    </script>
+</body>
+</html>
