@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>生成播放页</title>
+<style>body{background:#222;color:#fff;padding:50px;text-align:center;font-family:Arial;}</style>
+</head>
+<body>
+<h1>点一下生成所有独立播放页</h1>
+<button onclick="gen()" style="padding:15px 40px;font-size:18px;margin:20px;border-radius:50px;">立即生成</button>
+<pre id="log" style="margin-top:30px;background:#333;padding:20px;border-radius:10px;"></pre>
+
+<script>
+async function gen() {
+  const log = document.getElementById('log');
+  log.textContent = '读取 menu.json...\n';
+  const songs = await fetch('menu.json').then(r => r.json());
+  
+  songs.forEach((s, i) => {
+    setTimeout(() => {
+      const html = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${s.title} - 水喝千束音乐专区</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <a href="https://music.waterchisato.top" class="back-btn">返回主页</a>
+  <a href="../index.html" class="back-btn" style="left:130px;">歌单</a>
+  <div class="player">
+    <div class="title">${s.title}</div>
+    <audio id="a" src="${s.url}" preload="auto"></audio>
+    <button id="b" class="play-btn">播放</button>
+  </div>
+  <script>
+    const a=document.getElementById('a'), b=document.getElementById('b');
+    b.onclick=()=>{ a.paused?a.play():a.pause(); b.textContent=a.paused?'播放':'暂停'; b.classList.toggle('pause'); }
+  </script>
+</body>
+</html>`;
+      const blob = new Blob([html], {type:'text/html'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `songs/${s.title}.html`;
+      a.click();
+      log.textContent += `已生成：${s.title}.html\n`;
+      if(i===songs.length-1) log.textContent += '\n全部完成！请把 songs 文件夹里的文件上传到 GitHub';
+    }, i*400);
+  });
+}
+</script>
+</body></html>

@@ -1,0 +1,15 @@
+[
+    {
+        "title": "深渊幻象",
+        "url": "https://music.waterchisato.top/m/syhx"
+    },
+    {
+        "title": "幽梦之境",
+        "url": "http://logo.kf.waterchisato.top/zy/yume.mp3"
+    },
+    {
+        "title": "星河列车",
+        "url": "https://example.com/startrain.mp3"
+    }
+    // 继续加就往下写，记得最后一个也带逗号就行（除了最后一行）
+]
