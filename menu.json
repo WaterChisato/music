@@ -1,14 +1,18 @@
 [
-    {
-        "title": "深渊幻象",
-        "url": "https://logo.kf.waterchisato.top/zy/ats2.mp3"
-    },
-    {
-        "title": "幽梦之境",
-        "url": "http://logo.kf.waterchisato.top/zy/yume.mp3"
-    },
-    {
-        "title": "星河列车",
-        "url": "https://example.com/startrain.mp3"
-    }
+  {
+    "title": "深渊幻象",
+    "link": "https://music.waterchisato.top/m/syhx"
+  },
+  {
+    "title": "幽梦之境",
+    "link": "https://music.waterchisato.top/m/yume"
+  },
+  {
+    "title": "星河列车",
+    "link": "https://music.waterchisato.top/m/startrain"
+  },
+  {
+    "title": "这里继续加",
+    "link": "https://music.waterchisato.top/m/你的路径"
+  }
 ]
